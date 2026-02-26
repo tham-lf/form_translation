@@ -18,6 +18,7 @@ data/*
 records.jsonl
 *.docx
 *.txt
+!requirements.txt
 *.xml
 
 # Exclude generated scripts from debugging
