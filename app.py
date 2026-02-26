@@ -165,14 +165,12 @@ def parse_team_members(text: str) -> List[dict]:
     parts = [p.strip() for p in re.split(r',\s*(?![^()]*\))', str(text))]
     for part in parts:
         if not part: continue
-        # Extract title if present in parentheses
-        match = re.match(r'^(.*?)(?:\s*\((.*?)\))?$', part)
-        if match:
-            members.append({
-                "Name": match.group(1).strip(),
-                "Office": "",
-                "PracticeArea": match.group(2).strip() if match.group(2) else ""
-            })
+        # Keep the title as part of the name
+        members.append({
+            "Name": part,
+            "Office": "",
+            "PracticeArea": ""
+        })
     return members
 
 def parse_other_firms(text: str) -> List[dict]:
@@ -184,10 +182,21 @@ def parse_other_firms(text: str) -> List[dict]:
         if not part: continue
         match = re.match(r'^(.*?)(?:\s*\((.*?)\))?$', part)
         if match:
+            firm_name = match.group(1).strip()
+            detail = match.group(2).strip() if match.group(2) else ""
+            
+            role_details = ""
+            advising = ""
+            
+            if "advising" in detail.lower():
+                advising = detail
+            else:
+                role_details = detail
+
             firms.append({
-                "FirmName": match.group(1).strip(),
-                "RoleDetails": match.group(2).strip() if match.group(2) else "",
-                "Advising": ""
+                "FirmName": firm_name,
+                "RoleDetails": role_details,
+                "Advising": advising
             })
     return firms
 
