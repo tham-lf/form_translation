@@ -1,0 +1,32 @@
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Data and output files
+data/*
+!data/Output template (blank).docx
+records.jsonl
+*.docx
+*.txt
+*.xml
+
+# Exclude generated scripts from debugging
+dump_*.py
+find_boxes.py
+analyze*.py
+test_*.py
+
+# VSCode or IDEs
+.vscode/
+.idea/
+.DS_Store
