@@ -30,7 +30,7 @@ if st.button("Extract Data", type="primary"):
     st.session_state["results"] = [] # Reset on rerun
     
     if uploaded_files:
-        with st.spinner("Extracting fields with Gemini 2.5 Flash..."):
+        with st.spinner("Extracting fields ..."):
             for i, uploaded_file in enumerate(uploaded_files):
                 st.write(f"Processing: `{uploaded_file.name}`")
                 
